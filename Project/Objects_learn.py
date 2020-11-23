@@ -91,7 +91,7 @@ class Person:
     def __init__(self):
         self.name = input("enter a name: ")
         self.p_id = int(input("enter an id: "))
-        self.age = int(input("enter age: "))
+        self.age = int(input("enter age: "))    
 
     def __str__(self):
         return f"name: {self.name}, id: {self.p_id}, age: {self.age}"
