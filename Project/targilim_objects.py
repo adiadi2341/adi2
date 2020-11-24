@@ -82,8 +82,28 @@ while action !=0:
 a.display()"""
 
 #Python Exercises – Objects 2: תרגיל קורס
-s=Student()
-c=Course()
-print(c.add_student(s))
-c.add_factor("math",30)
+c = Course()
+while True:
+    s = Student(c.subs)
+    if s.s_id == 0:
+        break
+    if c.add_student(s) == False:
+        print(f"{s.name} has not get in.")
+        break
+
+c.add_factor(input("enter factor sub: "), int(input("enter the factor: ")))
+avaraged={}
+for i in c.students:
+    avaraged[i.s_id] = i.average()
+ids = []
+mingrade = 100
+for i in avaraged:
+    if avaraged[i] <mingrade:
+        mingrade = avaraged[i]
+        ids = [i]
+    elif avaraged[i] == mingrade:
+        ids += [i]
+print(c)
+for i in range(len(ids)):
+    print(c.del_student(ids[i]), "was removed from course because he sucks.")
 print(c)
