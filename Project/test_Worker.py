@@ -1,5 +1,8 @@
-from unittest import TestCase
+from unittest import TestCase, mock
+from unittest.mock import patch
 from Project.Worker import Worker
+import requests
+
 
 class TestWorker(TestCase):
     def setUp(self):
@@ -7,14 +10,12 @@ class TestWorker(TestCase):
         self.bob = Worker("bob", "mar", 1999, 11, 28, "afula", "israel")
         self.other = Worker("sagi", "bond", 2000, 11, 30, "rehovot", "literli rehov")
 
-
     def tearDown(self):
         print("tearDown")
 
-    def test_full_name(self):
-        res = self.bob.full_name()
-        print(self.bob.full_name())
-        self.assertTrue(res == "bob mar")
+    @mock.patch("Project.Worker.Worker.full_name", return_value='Gay!')
+    def test_full_name(self,mock_fullname):
+        self.assertEqual( self.bob.full_name() , "Gay!")
 
     def test_age_past(self):
         res = self.bob.age()
@@ -49,8 +50,16 @@ class TestWorker(TestCase):
 
     def test_greet(self):
         print(self.bob.greet(self.other))
-        self.assertTrue(self.bob.greet(self.other),'bob says hello to sagi')
+        self.assertTrue(self.bob.greet(self.other), 'bob says hello to sagi')
 
-    # def test_location(self):
-    #     print(self.bob.location())
-    #     self.assertTrue(self.bob.location(),"32.60306,35.30886")
+    # @mock.patch("Project.Worker.Worker.location", return_value='Gay!')
+    def test_location(self):
+        with patch('requests.get') as gay:
+            gay.return_value.ok=True
+            gay.return_value.text='success'
+            self.assertEqual(self.bob.location(),'success')
+            gay.return_value.ok=False
+            self.assertEqual(self.bob.location(),'Bad response!')
+
+        # print(self.bob.location())
+        # self.assertEqual('Gay!', self.bob.location())

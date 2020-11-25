@@ -104,7 +104,7 @@ for i in w:
         ordered+= i
 print(ordered)"""
 #5. לספור את כל הכמויות אותיות, ספרות, וסמלים בשורה
-"""w = input("put something: ")
+w = input("put something: ")
 chars = 0
 digits = 0
 symbol = 0
@@ -117,7 +117,7 @@ for i in w:
         symbol+=1
         if i == " ":
             symbol-=1
-print(f"chars = {chars}\n digits = {digits}\n symbols = {symbol}")"""
+print(f"chars = {chars}\n digits = {digits}\n symbols = {symbol}")
 #7. בדיקה האם סטרינג 1 בתוך סטרינג 2
 """w = input("put something: ")
 w2 = input("put another something: ")

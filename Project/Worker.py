@@ -1,8 +1,6 @@
 # class Worker
 import datetime
 import requests
-
-
 class Worker:
     """The Worker class holds information and methods about workers"""
 
